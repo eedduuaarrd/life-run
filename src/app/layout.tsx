@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const siteUrl = "https://veylora.app";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -13,9 +15,34 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Veylora - Conversion audits for landing pages",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Veylora - Conversion audits for landing pages",
+    template: "%s | Veylora",
+  },
   description:
     "Audit any public landing page and get prioritized recommendations to improve clarity, trust, CTAs, SEO, and conversions.",
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title: "Veylora - Conversion audits for landing pages",
+    description:
+      "Find the leaks that make visitors leave before they buy with a live conversion audit.",
+    url: siteUrl,
+    siteName: "Veylora",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Veylora - Conversion audits for landing pages",
+    description:
+      "Audit any public landing page and get prioritized recommendations to improve conversions.",
+  },
 };
 
 export default function RootLayout({

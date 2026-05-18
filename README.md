@@ -27,8 +27,17 @@ npm run build
 Deploy to Vercel as a standard Next.js app. No paid infrastructure is required
 for the current MVP.
 
-For monetization, replace the pricing mailto links in `src/app/page.tsx` with
-Stripe Payment Links or a Checkout route once live Stripe products are ready.
+Production is configured for `https://veylora.app`.
+
+For monetization, set these optional Vercel environment variables to Stripe
+Payment Links when live products are ready:
+
+```bash
+NEXT_PUBLIC_PAID_REPORT_URL=
+NEXT_PUBLIC_FIX_SPRINT_URL=
+```
+
+Without those values, paid CTAs fall back to email so the funnel still works.
 
 ## Audit endpoint
 

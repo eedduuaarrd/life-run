@@ -28,6 +28,8 @@ const priorityStyles = {
   low: "bg-emerald-500/10 text-emerald-700 ring-emerald-500/20",
 };
 
+const siteUrl = "https://veylora.app";
+
 export function AuditConsole() {
   const [url, setUrl] = useState("https://example.com");
   const [audit, setAudit] = useState<AuditState>({ status: "idle" });
@@ -184,6 +186,16 @@ function EmptyReport({ loading }: { loading: boolean }) {
 }
 
 function AuditReport({ result }: { result: AuditResult }) {
+  const shareText = encodeURIComponent(
+    `My landing page scored ${result.score}/100 on Veylora. Try yours:`,
+  );
+  const shareUrl = encodeURIComponent(siteUrl);
+  const reportHref = `mailto:hello@veylora.app?subject=${encodeURIComponent(
+    "I want my Veylora paid report",
+  )}&body=${encodeURIComponent(
+    `Please create a paid Veylora report for ${result.url}. My free audit score was ${result.score}/100.`,
+  )}`;
+
   return (
     <div>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
@@ -203,6 +215,31 @@ function AuditReport({ result }: { result: AuditResult }) {
             <span className="pb-2 text-xl text-cyan-200">{result.grade}</span>
           </div>
         </div>
+      </div>
+
+      <div className="mt-8 grid gap-3 rounded-3xl border border-cyan-100 bg-cyan-50 p-4 sm:grid-cols-3">
+        <a
+          href={reportHref}
+          className="rounded-full bg-slate-950 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-cyan-700"
+        >
+          Get 19 EUR report
+        </a>
+        <a
+          href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full bg-white px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-slate-950 ring-1 ring-cyan-200 transition hover:bg-cyan-100"
+        >
+          Share score
+        </a>
+        <a
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full bg-white px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-slate-950 ring-1 ring-cyan-200 transition hover:bg-cyan-100"
+        >
+          Share on LinkedIn
+        </a>
       </div>
 
       <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-5">
