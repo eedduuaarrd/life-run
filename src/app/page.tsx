@@ -15,7 +15,6 @@ export default function Home() {
       <AdRevenueEngine />
       <OrganicTrafficEngine />
       <ContentNetwork />
-      <Faq />
       <FinalCta />
     </main>
   );
@@ -343,45 +342,6 @@ function ContentNetwork() {
         ))}
       </div>
       <AdSlot label="Content network ad" slot={process.env.NEXT_PUBLIC_ADSENSE_CONTENT_SLOT} className="mt-8" />
-    </section>
-  );
-}
-
-function Faq() {
-  const items = [
-    {
-      question: "Is Veylora free?",
-      answer:
-        "Yes. The audit is free to use and does not require an account.",
-    },
-    {
-      question: "Why would people share it?",
-      answer:
-        "The score is simple, visual, and useful. Founders can share it with a team, client, or community when discussing what to improve.",
-    },
-    {
-      question: "Is this expensive to run?",
-      answer:
-        "No. The current MVP uses a lightweight Next.js app and heuristic analysis, so it can start with minimal infrastructure cost.",
-    },
-  ];
-
-  return (
-    <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
-      <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
-        FAQ
-      </p>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight">
-        Built for quick, practical landing page feedback.
-      </h2>
-      <div className="mt-8 space-y-3">
-        {items.map((item) => (
-          <article key={item.question} className="rounded-3xl border border-white/10 bg-white/[0.05] p-6">
-            <h3 className="text-xl font-semibold">{item.question}</h3>
-            <p className="mt-3 leading-7 text-slate-300">{item.answer}</p>
-          </article>
-        ))}
-      </div>
     </section>
   );
 }
