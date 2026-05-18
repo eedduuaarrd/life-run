@@ -44,8 +44,14 @@ export function AuditConsole() {
       });
       const payload = (await response.json()) as AuditResult | { error?: string };
 
-      if (!response.ok || "error" in payload) {
-        throw new Error(payload.error ?? "The audit failed. Try another public URL.");
+      if (!response.ok) {
+        throw new Error(
+          isAuditError(payload) ? payload.error : "The audit failed. Try another public URL.",
+        );
+      }
+
+      if (!isAuditResult(payload)) {
+        throw new Error("The audit returned an unexpected response. Try again.");
       }
 
       setAudit({ status: "success", result: payload });
@@ -126,6 +132,14 @@ export function AuditConsole() {
       </div>
     </section>
   );
+}
+
+function isAuditError(payload: AuditResult | { error?: string }): payload is { error: string } {
+  return "error" in payload && typeof payload.error === "string";
+}
+
+function isAuditResult(payload: AuditResult | { error?: string }): payload is AuditResult {
+  return "score" in payload && "recommendations" in payload && Array.isArray(payload.recommendations);
 }
 
 function EmptyReport({ loading }: { loading: boolean }) {
