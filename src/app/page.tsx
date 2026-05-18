@@ -10,7 +10,6 @@ export default function Home() {
       <Hero />
       <AdSlot label="Top leaderboard ad" slot={process.env.NEXT_PUBLIC_ADSENSE_TOP_SLOT} className="mx-auto max-w-7xl" />
       <AuditConsole />
-      <AdSlot label="In-feed audit ad" slot={process.env.NEXT_PUBLIC_ADSENSE_IN_FEED_SLOT} className="mx-auto max-w-7xl" />
       <HowItWorks />
       <AdRevenueEngine />
       <OrganicTrafficEngine />
@@ -121,7 +120,7 @@ function Hero() {
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-slate-300">Veylora report</span>
               <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-sm font-semibold text-emerald-200">
-                Revenue ready
+                Action plan
               </span>
             </div>
             <div className="mt-8 grid grid-cols-[auto_1fr] gap-5">
@@ -165,7 +164,7 @@ function HowItWorks() {
       text: "The report ranks the changes most likely to improve leads or sales before design polish.",
     },
     {
-      title: "Monetize the insight",
+      title: "Share and improve",
       text: "Share the result with your team and use the recommendations to decide what to improve first.",
     },
   ];
@@ -360,6 +359,12 @@ function FinalCta() {
         >
           Try the audit
         </a>
+        <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-500">
+          <Link href="/about" className="hover:text-slate-950">About</Link>
+          <Link href="/contact" className="hover:text-slate-950">Contact</Link>
+          <Link href="/privacy" className="hover:text-slate-950">Privacy</Link>
+          <Link href="/terms" className="hover:text-slate-950">Terms</Link>
+        </div>
       </div>
     </section>
   );

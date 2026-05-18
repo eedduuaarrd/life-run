@@ -1,4 +1,6 @@
+import Image from "next/image";
 import type { AuditResult } from "@/lib/audit";
+import { getScreenshotUrl } from "@/lib/screenshot";
 
 const metricLabels: Record<keyof AuditResult["metrics"], string> = {
   titleLength: "Title chars",
@@ -26,6 +28,7 @@ type AuditResultCardProps = {
 
 export function AuditResultCard({ result, shareUrl }: AuditResultCardProps) {
   const encodedShareUrl = encodeURIComponent(shareUrl);
+  const screenshotUrl = getScreenshotUrl(result.url);
   const shareText = encodeURIComponent(
     `This landing page scored ${result.score}/100 on Veylora.`,
   );
@@ -49,6 +52,17 @@ export function AuditResultCard({ result, shareUrl }: AuditResultCardProps) {
             <span className="pb-2 text-xl text-cyan-200">{result.grade}</span>
           </div>
         </div>
+      </div>
+
+      <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100">
+        <Image
+          src={screenshotUrl}
+          alt={`Screenshot preview of ${result.url}`}
+          width={1200}
+          height={750}
+          className="aspect-[16/10] w-full object-cover"
+          unoptimized
+        />
       </div>
 
       <div className="mt-8 grid gap-3 rounded-3xl border border-cyan-100 bg-cyan-50 p-4 sm:grid-cols-3">
