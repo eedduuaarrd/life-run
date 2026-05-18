@@ -277,15 +277,21 @@ function OrganicTrafficEngine() {
                 {loop}
               </div>
             ))}
-            <a
+            <Link
               href="/guides/landing-page-conversion-audit"
               className="mt-3 inline-flex w-fit rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-cyan-200"
             >
               Read the SEO guide
-            </a>
+            </Link>
           </div>
         </div>
       </div>
+      <a
+        href={sponsorHref}
+        className="mt-6 inline-flex rounded-full border border-cyan-300/30 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-cyan-100 transition hover:bg-cyan-300 hover:text-slate-950"
+      >
+        Sponsor Veylora
+      </a>
     </section>
   );
 }

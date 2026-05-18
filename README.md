@@ -30,7 +30,8 @@ for the current MVP.
 Production is configured for `https://veylora.app`.
 
 For ad monetization, set these optional Vercel environment variables after
-Google AdSense approves `veylora.app`:
+Google AdSense approves `veylora.app`. The default publisher is already
+configured as `ca-pub-6750754859429492`.
 
 ```bash
 NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX

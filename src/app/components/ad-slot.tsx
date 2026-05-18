@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { adsenseClient } from "@/lib/adsense";
 
 declare global {
   interface Window {
@@ -14,10 +15,8 @@ type AdSlotProps = {
   className?: string;
 };
 
-const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
-
 export function AdSlot({ label, slot, className = "" }: AdSlotProps) {
-  const canRenderAd = Boolean(adClient && slot);
+  const canRenderAd = Boolean(adsenseClient && slot);
 
   useEffect(() => {
     if (!canRenderAd) {
@@ -43,7 +42,7 @@ export function AdSlot({ label, slot, className = "" }: AdSlotProps) {
       {canRenderAd ? (
         <ins
           className="adsbygoogle mt-3 block min-h-24"
-          data-ad-client={adClient}
+          data-ad-client={adsenseClient}
           data-ad-slot={slot}
           data-ad-format="auto"
           data-full-width-responsive="true"

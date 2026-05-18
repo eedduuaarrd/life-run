@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AdSenseScript } from "./components/adsense-script";
+import { adsenseClient } from "@/lib/adsense";
 import "./globals.css";
 
 const siteUrl = "https://veylora.app";
@@ -44,6 +45,9 @@ export const metadata: Metadata = {
     title: "Veylora - Conversion audits for landing pages",
     description:
       "Audit any public landing page and get prioritized recommendations to improve conversions.",
+  },
+  other: {
+    "google-adsense-account": adsenseClient,
   },
 };
 

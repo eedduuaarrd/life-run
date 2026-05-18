@@ -1,9 +1,8 @@
 import Script from "next/script";
-
-const adClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+import { adsenseClient } from "@/lib/adsense";
 
 export function AdSenseScript() {
-  if (!adClient) {
+  if (!adsenseClient) {
     return null;
   }
 
@@ -13,7 +12,7 @@ export function AdSenseScript() {
       async
       strategy="afterInteractive"
       crossOrigin="anonymous"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClient}`}
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
     />
   );
 }

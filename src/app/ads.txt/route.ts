@@ -1,13 +1,9 @@
-const rawPublisherId =
-  process.env.GOOGLE_ADSENSE_PUBLISHER_ID ??
-  process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.replace(/^ca-/, "");
+import { adsensePublisherId } from "@/lib/adsense";
 
 export function GET() {
-  const publisherId = rawPublisherId?.startsWith("pub-")
-    ? rawPublisherId
-    : rawPublisherId
-      ? `pub-${rawPublisherId}`
-      : "";
+  const publisherId = adsensePublisherId.startsWith("pub-")
+    ? adsensePublisherId
+    : `pub-${adsensePublisherId}`;
 
   const body = publisherId
     ? `google.com, ${publisherId}, DIRECT, f08c47fec0942fa0\n`
