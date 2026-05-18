@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Landing page conversion audit checklist",
@@ -36,9 +37,9 @@ export default function LandingPageConversionAuditGuide() {
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-10 text-white lg:px-8">
       <article className="mx-auto max-w-4xl">
-        <a href="/" className="text-sm font-semibold text-cyan-200 transition hover:text-white">
+        <Link href="/" className="text-sm font-semibold text-cyan-200 transition hover:text-white">
           ← Back to Veylora
-        </a>
+        </Link>
         <p className="mt-16 text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
           Conversion guide
         </p>
@@ -56,12 +57,12 @@ export default function LandingPageConversionAuditGuide() {
             Run a free Veylora audit first, then use the checklist below to
             prioritize which changes to make this week.
           </p>
-          <a
+          <Link
             href="/#audit"
             className="mt-6 inline-flex rounded-full bg-cyan-300 px-6 py-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-white"
           >
             Audit my page
-          </a>
+          </Link>
         </div>
 
         <section className="mt-12 space-y-5">
