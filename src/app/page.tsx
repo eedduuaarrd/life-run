@@ -3,10 +3,6 @@ import { AdSlot } from "./components/ad-slot";
 import { AuditConsole } from "./components/audit-console";
 
 const siteUrl = "https://veylora.app";
-const sponsorHref =
-  process.env.NEXT_PUBLIC_SPONSOR_URL ??
-  "mailto:hello@veylora.app?subject=Sponsor%20Veylora";
-
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
@@ -44,7 +40,7 @@ function SeoJsonLd() {
       },
       {
         "@type": "Offer",
-        name: "Sponsored placement",
+        name: "Free landing page audit",
         price: "0",
         priceCurrency: "EUR",
       },
@@ -72,10 +68,10 @@ function Hero() {
             Audit
           </a>
           <a href="#growth" className="transition hover:text-white">
-            Growth
+            Checks
           </a>
           <a href="#ads" className="transition hover:text-white">
-            Ads
+            Guides
           </a>
           <Link href="/guides" className="transition hover:text-white">
             Guides
@@ -95,15 +91,15 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl gap-12 py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <p className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100">
-            Free audit tool built for organic traffic and ad revenue.
+            Free landing page audit for clearer, better-converting websites.
           </p>
           <h1 className="mt-7 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
             Find the leaks that make visitors leave before they buy.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Veylora gives founders a useful free score and turns search traffic
-            into monetizable pageviews through helpful guides, shareable audit
-            results, sponsored slots, and AdSense-ready placements.
+            Veylora gives founders, marketers, and small businesses a practical
+            score with clear recommendations for headlines, CTAs, trust signals,
+            SEO snippets, and accessibility.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
@@ -120,7 +116,7 @@ function Hero() {
             </Link>
           </div>
           <p className="mt-5 text-sm text-slate-400">
-            Monetization path: organic visits → free audits → social shares → display ads.
+            No signup required. Paste a public URL and get useful fixes in seconds.
           </p>
         </div>
 
@@ -174,7 +170,7 @@ function HowItWorks() {
     },
     {
       title: "Monetize the insight",
-      text: "Use every useful result page, guide, and share as a new ad-supported pageview.",
+      text: "Share the result with your team and use the recommendations to decide what to improve first.",
     },
   ];
 
@@ -201,19 +197,19 @@ function HowItWorks() {
 function AdRevenueEngine() {
   const offers = [
     {
-      title: "AdSense units",
-      price: "Display",
-      text: "Responsive ad placements are ready for top, in-feed, content, and guide inventory once AdSense approves the domain.",
+      title: "Clarity",
+      price: "Copy",
+      text: "Check whether visitors can understand the offer, audience, outcome, and next step quickly.",
     },
     {
-      title: "Sponsored slots",
-      price: "Direct",
-      text: "Fallback ad cards invite relevant SaaS tools, agencies, and marketers to sponsor the free audit experience.",
+      title: "Trust",
+      price: "Proof",
+      text: "Find missing proof, reviews, logos, security cues, and confidence builders near important claims.",
     },
     {
-      title: "Content inventory",
-      price: "Organic",
-      text: "Each guide creates search inventory that can rank, earn impressions, and send visitors back to the audit tool.",
+      title: "Action",
+      price: "CTA",
+      text: "Spot weak calls to action, missing forms, price uncertainty, and pages that make visitors hunt.",
     },
   ];
 
@@ -222,14 +218,15 @@ function AdRevenueEngine() {
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
-            Ad monetization
+            What Veylora checks
           </p>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Turn free audits and SEO guides into ad-supported pageviews.
+            A quick review of the things that usually block conversions.
           </h2>
           <p className="mt-5 text-lg leading-8 text-slate-300">
-            Keep the core tool free, maximize helpful pageviews, and earn from
-            AdSense or direct sponsors without needing checkout friction.
+            The audit focuses on practical issues a visitor can feel: confusing
+            copy, weak proof, unclear actions, missing SEO snippets, and
+            accessibility gaps.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -253,10 +250,10 @@ function AdRevenueEngine() {
 
 function OrganicTrafficEngine() {
   const loops = [
-    "Target long-tail searches: landing page audit checklist, CTA examples, conversion leaks, website audit checklist.",
-    "Add internal links from every guide back to the free audit so content traffic becomes tool usage.",
-    "Make audit scores shareable on X and LinkedIn so every user can create another acquisition loop.",
-    "Publish one practical guide per keyword cluster before chasing broad high-competition terms.",
+    "Use the free audit first to find obvious issues.",
+    "Read the guides for examples and checklists.",
+    "Share the score with your team or client.",
+    "Run the audit again after changes to compare progress.",
   ];
 
   return (
@@ -265,10 +262,10 @@ function OrganicTrafficEngine() {
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-100">
-              Traffic plan
+              How to use it
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">
-              Built-in loops for traffic, not just a static landing page.
+              Start with a score, then work through the recommendations.
             </h2>
           </div>
           <div className="grid gap-3">
@@ -286,12 +283,6 @@ function OrganicTrafficEngine() {
           </div>
         </div>
       </div>
-      <a
-        href={sponsorHref}
-        className="mt-6 inline-flex rounded-full border border-cyan-300/30 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-cyan-100 transition hover:bg-cyan-300 hover:text-slate-950"
-      >
-        Sponsor Veylora
-      </a>
     </section>
   );
 }
@@ -324,14 +315,14 @@ function ContentNetwork() {
     <section id="ads" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="max-w-2xl">
         <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
-          Organic content network
+          Free guides
         </p>
         <h2 className="mt-4 text-4xl font-semibold tracking-tight">
-          More indexable pages means more search entry points.
+          Learn how to improve a page before spending more on traffic.
         </h2>
         <p className="mt-4 text-slate-300">
-          Veylora now has a guide hub and keyword-focused pages that can bring
-          organic visitors into the free audit flow.
+          Short, practical guides for landing pages, website audits, CTAs, and
+          conversion basics.
         </p>
       </div>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -359,14 +350,14 @@ function ContentNetwork() {
 function Faq() {
   const items = [
     {
-      question: "How does Veylora make money?",
+      question: "Is Veylora free?",
       answer:
-        "Veylora keeps the audit free and monetizes useful traffic with display ads, sponsored placements, and organic guide pageviews.",
+        "Yes. The audit is free to use and does not require an account.",
     },
     {
       question: "Why would people share it?",
       answer:
-        "The score is simple, visual, and useful. Founders can share the result, and every share can bring another visitor into the ad-supported tool.",
+        "The score is simple, visual, and useful. Founders can share it with a team, client, or community when discussing what to improve.",
     },
     {
       question: "Is this expensive to run?",
@@ -381,7 +372,7 @@ function Faq() {
         FAQ
       </p>
       <h2 className="mt-4 text-4xl font-semibold tracking-tight">
-        Built to attract traffic and monetize quickly.
+        Built for quick, practical landing page feedback.
       </h2>
       <div className="mt-8 space-y-3">
         {items.map((item) => (
@@ -400,11 +391,11 @@ function FinalCta() {
     <section className="px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-white p-8 text-center text-slate-950 md:p-14">
         <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
-          Grow with free audits, organic guides, and ad inventory.
+          Get a clearer landing page in minutes.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-          Veylora is built to be cheap to run: one Next.js app, a lightweight
-          heuristic audit engine, AdSense-ready placements, and SEO pages.
+          Run a free audit, review the quick wins, share the result, and improve
+          the sections that create the most friction.
         </p>
         <a
           href="#audit"

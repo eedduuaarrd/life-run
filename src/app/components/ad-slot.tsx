@@ -52,8 +52,8 @@ export function AdSlot({ label, slot, className = "" }: AdSlotProps) {
           href="mailto:hello@veylora.app?subject=Sponsor%20Veylora"
           className="mt-3 block rounded-2xl border border-dashed border-cyan-300/30 bg-slate-950/70 p-5 text-sm leading-6 text-slate-300 transition hover:border-cyan-300 hover:text-white"
         >
-          Sponsor this free conversion audit tool. This slot becomes a Google
-          AdSense unit when publisher IDs are configured.
+          Advertise here to reach founders, marketers, and small businesses
+          improving their websites.
         </a>
       )}
     </aside>
