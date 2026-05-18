@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   other: {
     "google-adsense-account": adsenseClient,
   },
+  verification: {
+    google: "XR7jyPsI6s7ILwktGfZu9BAfngiJOm_PyeVi8z7Z0pk",
+  },
 };
 
 export default function RootLayout({
