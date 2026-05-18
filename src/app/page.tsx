@@ -69,9 +69,6 @@ function Hero() {
           <a href="#growth" className="transition hover:text-white">
             Checks
           </a>
-          <a href="#ads" className="transition hover:text-white">
-            Guides
-          </a>
           <Link href="/guides" className="transition hover:text-white">
             Guides
           </Link>
