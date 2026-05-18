@@ -1,23 +1,24 @@
+import Link from "next/link";
+import { AdSlot } from "./components/ad-slot";
 import { AuditConsole } from "./components/audit-console";
 
 const siteUrl = "https://veylora.app";
-const paidReportHref =
-  process.env.NEXT_PUBLIC_PAID_REPORT_URL ??
-  "mailto:hello@veylora.app?subject=I%20want%20a%20Veylora%20paid%20landing%20page%20report";
-const sprintHref =
-  process.env.NEXT_PUBLIC_FIX_SPRINT_URL ??
-  "mailto:hello@veylora.app?subject=I%20want%20the%20Veylora%20landing%20fix%20sprint";
+const sponsorHref =
+  process.env.NEXT_PUBLIC_SPONSOR_URL ??
+  "mailto:hello@veylora.app?subject=Sponsor%20Veylora";
 
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
       <SeoJsonLd />
       <Hero />
+      <AdSlot label="Top leaderboard ad" slot={process.env.NEXT_PUBLIC_ADSENSE_TOP_SLOT} className="mx-auto max-w-7xl" />
       <AuditConsole />
+      <AdSlot label="In-feed audit ad" slot={process.env.NEXT_PUBLIC_ADSENSE_IN_FEED_SLOT} className="mx-auto max-w-7xl" />
       <HowItWorks />
-      <RevenueEngine />
-      <TrafficEngine />
-      <Pricing />
+      <AdRevenueEngine />
+      <OrganicTrafficEngine />
+      <ContentNetwork />
       <Faq />
       <FinalCta />
     </main>
@@ -43,8 +44,8 @@ function SeoJsonLd() {
       },
       {
         "@type": "Offer",
-        name: "Paid landing page report",
-        price: "19",
+        name: "Sponsored placement",
+        price: "0",
         priceCurrency: "EUR",
       },
     ],
@@ -73,12 +74,12 @@ function Hero() {
           <a href="#growth" className="transition hover:text-white">
             Growth
           </a>
-          <a href="#pricing" className="transition hover:text-white">
-            Pricing
+          <a href="#ads" className="transition hover:text-white">
+            Ads
           </a>
-          <a href="/guides/landing-page-conversion-audit" className="transition hover:text-white">
-            Guide
-          </a>
+          <Link href="/guides" className="transition hover:text-white">
+            Guides
+          </Link>
           <a href="mailto:hello@veylora.app" className="transition hover:text-white">
             Contact
           </a>
@@ -94,15 +95,15 @@ function Hero() {
       <div className="mx-auto grid max-w-7xl gap-12 py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <p className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100">
-            Free audit today. Paid action plan when you are ready.
+            Free audit tool built for organic traffic and ad revenue.
           </p>
           <h1 className="mt-7 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
             Find the leaks that make visitors leave before they buy.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Veylora turns any public landing page into a prioritized action plan:
-            stronger headlines, clearer CTAs, trust proof, SEO snippets, and
-            accessibility fixes.
+            Veylora gives founders a useful free score and turns search traffic
+            into monetizable pageviews through helpful guides, shareable audit
+            results, sponsored slots, and AdSense-ready placements.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
@@ -111,15 +112,15 @@ function Hero() {
             >
               Audit a page
             </a>
-            <a
-              href={paidReportHref}
+            <Link
+              href="/guides"
               className="rounded-full border border-white/15 px-6 py-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-white transition hover:bg-white/10"
             >
-              Get the paid report
-            </a>
+              Read free guides
+            </Link>
           </div>
           <p className="mt-5 text-sm text-slate-400">
-            Launch offer: free score, 19 EUR detailed report, 199 EUR landing fix sprint.
+            Monetization path: organic visits → free audits → social shares → display ads.
           </p>
         </div>
 
@@ -173,7 +174,7 @@ function HowItWorks() {
     },
     {
       title: "Monetize the insight",
-      text: "Use the audit as a lead magnet, paid report, or upsell into done-for-you landing fixes.",
+      text: "Use every useful result page, guide, and share as a new ad-supported pageview.",
     },
   ];
 
@@ -197,22 +198,22 @@ function HowItWorks() {
   );
 }
 
-function RevenueEngine() {
+function AdRevenueEngine() {
   const offers = [
     {
-      title: "Paid report",
-      price: "19 EUR",
-      text: "A deeper teardown with rewritten hero copy, CTA sequence, proof placement, and a launch checklist.",
+      title: "AdSense units",
+      price: "Display",
+      text: "Responsive ad placements are ready for top, in-feed, content, and guide inventory once AdSense approves the domain.",
     },
     {
-      title: "Landing fix sprint",
-      price: "199 EUR",
-      text: "Done-for-you changes for one landing page: copy, structure, CTAs, SEO metadata, and proof blocks.",
+      title: "Sponsored slots",
+      price: "Direct",
+      text: "Fallback ad cards invite relevant SaaS tools, agencies, and marketers to sponsor the free audit experience.",
     },
     {
-      title: "Agency retainer",
-      price: "Custom",
-      text: "Recurring audits and white-label reports for freelancers or small agencies selling conversion work.",
+      title: "Content inventory",
+      price: "Organic",
+      text: "Each guide creates search inventory that can rank, earn impressions, and send visitors back to the audit tool.",
     },
   ];
 
@@ -221,15 +222,14 @@ function RevenueEngine() {
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
-            Monetization funnel
+            Ad monetization
           </p>
           <h2 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-            Turn every free audit into a paid next step.
+            Turn free audits and SEO guides into ad-supported pageviews.
           </h2>
           <p className="mt-5 text-lg leading-8 text-slate-300">
-            The free tool creates trust. The money comes from selling the next
-            layer: a detailed report, done-for-you fixes, and recurring agency
-            audits.
+            Keep the core tool free, maximize helpful pageviews, and earn from
+            AdSense or direct sponsors without needing checkout friction.
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
@@ -251,12 +251,12 @@ function RevenueEngine() {
   );
 }
 
-function TrafficEngine() {
+function OrganicTrafficEngine() {
   const loops = [
-    "Publish teardown pages: 'We audited [brand] landing page' with practical lessons.",
-    "Post score screenshots on X, LinkedIn, Indie Hackers, and relevant founder communities.",
-    "Offer agencies a white-label version so they send client traffic back through Veylora.",
-    "Create SEO guides around landing page audits, conversion leaks, CTA examples, and trust proof.",
+    "Target long-tail searches: landing page audit checklist, CTA examples, conversion leaks, website audit checklist.",
+    "Add internal links from every guide back to the free audit so content traffic becomes tool usage.",
+    "Make audit scores shareable on X and LinkedIn so every user can create another acquisition loop.",
+    "Publish one practical guide per keyword cluster before chasing broad high-competition terms.",
   ];
 
   return (
@@ -290,84 +290,62 @@ function TrafficEngine() {
   );
 }
 
-function Pricing() {
-  const plans = [
+function ContentNetwork() {
+  const guides = [
     {
-      name: "Free",
-      price: "0 EUR",
-      description: "A live audit that proves the value and brings users into the funnel.",
-      features: ["Live conversion score", "Top fixes", "Social share loop"],
-      cta: "Run free audit",
-      href: "#audit",
+      title: "Landing page conversion audit checklist",
+      description: "The core checklist for founders checking headlines, CTAs, proof, pricing, and SEO snippets.",
+      href: "/guides/landing-page-conversion-audit",
     },
     {
-      name: "Report",
-      price: "19 EUR",
-      description: "For founders who want exact copy and layout changes.",
-      features: ["Detailed teardown", "Hero rewrite", "Prioritized checklist"],
-      cta: "Get report",
-      href: paidReportHref,
+      title: "Website audit checklist for small businesses",
+      description: "A simple checklist for local sites that need more calls, bookings, and qualified leads.",
+      href: "/guides/website-audit-checklist",
     },
     {
-      name: "Fix Sprint",
-      price: "199 EUR",
-      description: "For teams who want the page improved, not just diagnosed.",
-      features: ["Done-for-you copy", "CTA structure", "SEO metadata pass"],
-      cta: "Book sprint",
-      href: sprintHref,
+      title: "Landing page CTA examples",
+      description: "Examples of call-to-action copy that makes the next step obvious and reduces hesitation.",
+      href: "/guides/landing-page-cta-examples",
+    },
+    {
+      title: "Conversion rate optimization basics",
+      description: "A practical CRO primer built for early-stage SaaS, freelancers, and service businesses.",
+      href: "/guides/conversion-rate-optimization-basics",
     },
   ];
 
   return (
-    <section id="pricing" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+    <section id="ads" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="max-w-2xl">
         <p className="text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
-          Monetization
+          Organic content network
         </p>
         <h2 className="mt-4 text-4xl font-semibold tracking-tight">
-          Start free, then charge for repeat audits and client-ready reports.
+          More indexable pages means more search entry points.
         </h2>
         <p className="mt-4 text-slate-300">
-          Add Stripe Payment Links later with `NEXT_PUBLIC_PAID_REPORT_URL` and
-          `NEXT_PUBLIC_FIX_SPRINT_URL`; the funnel works today via email.
+          Veylora now has a guide hub and keyword-focused pages that can bring
+          organic visitors into the free audit flow.
         </p>
       </div>
-      <div className="mt-8 grid gap-4 lg:grid-cols-3">
-        {plans.map((plan, index) => (
+      <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {guides.map((guide) => (
           <article
-            key={plan.name}
-            className={`rounded-[2rem] border p-6 ${
-              index === 1
-                ? "border-cyan-300 bg-cyan-300 text-slate-950"
-                : "border-white/10 bg-white/[0.05] text-white"
-            }`}
+            key={guide.href}
+            className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6"
           >
-            <h3 className="text-2xl font-semibold">{plan.name}</h3>
-            <p className="mt-3 text-4xl font-semibold">{plan.price}</p>
-            <p className={`mt-3 leading-7 ${index === 1 ? "text-slate-800" : "text-slate-300"}`}>
-              {plan.description}
-            </p>
-            <ul className="mt-6 space-y-3">
-              {plan.features.map((feature) => (
-                <li key={feature} className="flex gap-3 text-sm font-medium">
-                  <span aria-hidden="true">+</span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-            <a
-              href={plan.href}
-              className={`mt-8 block rounded-full px-5 py-3 text-center text-sm font-bold uppercase tracking-[0.16em] transition ${
-                index === 1
-                  ? "bg-slate-950 text-white hover:bg-slate-800"
-                  : "bg-white text-slate-950 hover:bg-cyan-200"
-              }`}
+            <h3 className="text-2xl font-semibold">{guide.title}</h3>
+            <p className="mt-3 leading-7 text-slate-300">{guide.description}</p>
+            <Link
+              href={guide.href}
+              className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-cyan-200"
             >
-              {plan.cta}
-            </a>
+              Read guide
+            </Link>
           </article>
         ))}
       </div>
+      <AdSlot label="Content network ad" slot={process.env.NEXT_PUBLIC_ADSENSE_CONTENT_SLOT} className="mt-8" />
     </section>
   );
 }
@@ -377,12 +355,12 @@ function Faq() {
     {
       question: "How does Veylora make money?",
       answer:
-        "The free audit attracts leads. Paid reports and fix sprints monetize visitors who want specific copy, layout, and CTA improvements.",
+        "Veylora keeps the audit free and monetizes useful traffic with display ads, sponsored placements, and organic guide pageviews.",
     },
     {
       question: "Why would people share it?",
       answer:
-        "The score is simple, visual, and useful. Founders can share the result, agencies can use it as a lead magnet, and teardown content can rank on search.",
+        "The score is simple, visual, and useful. Founders can share the result, and every share can bring another visitor into the ad-supported tool.",
     },
     {
       question: "Is this expensive to run?",
@@ -416,11 +394,11 @@ function FinalCta() {
     <section className="px-6 py-20 lg:px-8">
       <div className="mx-auto max-w-7xl rounded-[2.5rem] bg-white p-8 text-center text-slate-950 md:p-14">
         <h2 className="text-4xl font-semibold tracking-tight md:text-5xl">
-          Launch with audits. Sell the fixes.
+          Grow with free audits, organic guides, and ad inventory.
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">
           Veylora is built to be cheap to run: one Next.js app, a lightweight
-          heuristic audit engine, and upgrade paths for paid reports.
+          heuristic audit engine, AdSense-ready placements, and SEO pages.
         </p>
         <a
           href="#audit"

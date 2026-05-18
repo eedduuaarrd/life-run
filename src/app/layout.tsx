@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { AdSenseScript } from "./components/adsense-script";
 import "./globals.css";
 
 const siteUrl = "https://veylora.app";
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <Analytics />
+        <AdSenseScript />
       </body>
     </html>
   );

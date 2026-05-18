@@ -1,9 +1,9 @@
 # Veylora
 
-Veylora is a low-cost conversion audit micro-SaaS for public landing pages. It
+Veylora is an ad-supported conversion audit site for public landing pages. It
 fetches a submitted URL, scores the page across conversion, SEO, trust, and
-accessibility signals, then returns prioritized recommendations that can become
-paid reports or done-for-you landing page work.
+accessibility signals, then turns useful free audits and organic guides into
+monetizable pageviews.
 
 ## Getting Started
 
@@ -29,15 +29,21 @@ for the current MVP.
 
 Production is configured for `https://veylora.app`.
 
-For monetization, set these optional Vercel environment variables to Stripe
-Payment Links when live products are ready:
+For ad monetization, set these optional Vercel environment variables after
+Google AdSense approves `veylora.app`:
 
 ```bash
-NEXT_PUBLIC_PAID_REPORT_URL=
-NEXT_PUBLIC_FIX_SPRINT_URL=
+NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX
+GOOGLE_ADSENSE_PUBLISHER_ID=pub-XXXXXXXXXXXXXXXX
+NEXT_PUBLIC_ADSENSE_TOP_SLOT=
+NEXT_PUBLIC_ADSENSE_IN_FEED_SLOT=
+NEXT_PUBLIC_ADSENSE_CONTENT_SLOT=
+NEXT_PUBLIC_ADSENSE_GUIDE_SLOT=
+NEXT_PUBLIC_SPONSOR_URL=
 ```
 
-Without those values, paid CTAs fall back to email so the funnel still works.
+Without those values, ad slots render sponsor fallback cards and `/ads.txt`
+returns a setup comment.
 
 ## Audit endpoint
 

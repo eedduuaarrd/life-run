@@ -190,10 +190,10 @@ function AuditReport({ result }: { result: AuditResult }) {
     `My landing page scored ${result.score}/100 on Veylora. Try yours:`,
   );
   const shareUrl = encodeURIComponent(siteUrl);
-  const reportHref = `mailto:hello@veylora.app?subject=${encodeURIComponent(
-    "I want my Veylora paid report",
+  const sponsorHref = `mailto:hello@veylora.app?subject=${encodeURIComponent(
+    "I want to sponsor Veylora",
   )}&body=${encodeURIComponent(
-    `Please create a paid Veylora report for ${result.url}. My free audit score was ${result.score}/100.`,
+    `I want to sponsor Veylora. This audit result page scored ${result.url} at ${result.score}/100.`,
   )}`;
 
   return (
@@ -219,10 +219,10 @@ function AuditReport({ result }: { result: AuditResult }) {
 
       <div className="mt-8 grid gap-3 rounded-3xl border border-cyan-100 bg-cyan-50 p-4 sm:grid-cols-3">
         <a
-          href={reportHref}
+          href={sponsorHref}
           className="rounded-full bg-slate-950 px-4 py-3 text-center text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-cyan-700"
         >
-          Get 19 EUR report
+          Sponsor this tool
         </a>
         <a
           href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`}

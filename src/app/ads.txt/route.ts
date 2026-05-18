@@ -1,0 +1,22 @@
+const rawPublisherId =
+  process.env.GOOGLE_ADSENSE_PUBLISHER_ID ??
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT?.replace(/^ca-/, "");
+
+export function GET() {
+  const publisherId = rawPublisherId?.startsWith("pub-")
+    ? rawPublisherId
+    : rawPublisherId
+      ? `pub-${rawPublisherId}`
+      : "";
+
+  const body = publisherId
+    ? `google.com, ${publisherId}, DIRECT, f08c47fec0942fa0\n`
+    : "# Add GOOGLE_ADSENSE_PUBLISHER_ID=pub-XXXXXXXXXXXXXXXX to publish an ads.txt record.\n";
+
+  return new Response(body, {
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "public, max-age=3600",
+    },
+  });
+}
