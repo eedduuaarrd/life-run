@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { LocalBusinessJsonLd } from "@/components/local-business-json-ld";
-import { getBusinessConfig } from "@/lib/business";
+import { StructuredDataJsonLd } from "@/components/structured-data-json-ld";
+import { BRAND_KEYWORD, getBusinessConfig } from "@/lib/business";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,40 +14,38 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const business = getBusinessConfig();
+const site = getBusinessConfig();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(business.siteUrl),
+  metadataBase: new URL(site.siteUrl),
   title: {
-    default: `${business.name} | Google Maps i contacte`,
-    template: `%s | ${business.name}`,
+    default: site.name,
+    template: `%s | ${site.name}`,
   },
-  description: business.description,
+  description: site.description,
+  applicationName: site.name,
   keywords: [
-    business.name,
-    "Veylora",
-    "Google Maps",
-    business.addressLocality,
-    business.addressRegion,
-    "horaris",
-    "contacte",
-    "ubicació",
-  ].filter((k): k is string => Boolean(k)),
+    site.name,
+    BRAND_KEYWORD,
+    "veylora",
+    "web oficial veylora",
+    "Veylora oficial",
+  ],
   alternates: {
-    canonical: business.siteUrl,
+    canonical: site.siteUrl,
   },
   openGraph: {
     type: "website",
     locale: "ca_ES",
-    url: business.siteUrl,
-    siteName: business.name,
-    title: `${business.name} | Troba’ns a Google Maps`,
-    description: business.description,
+    url: site.siteUrl,
+    siteName: site.name,
+    title: site.name,
+    description: site.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: business.name,
-    description: business.description,
+    title: site.name,
+    description: site.description,
   },
   robots: {
     index: true,
@@ -59,14 +57,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  other: {
-    "geo.region": business.addressRegion ?? business.addressCountry,
-    ...(business.latitude != null && business.longitude != null
-      ? {
-          "geo.position": `${business.latitude};${business.longitude}`,
-          ICBM: `${business.latitude}, ${business.longitude}`,
-        }
-      : {}),
+  verification: {
+    // Afegeix quan tinguis el codi de Google Search Console:
+    // google: "el-teu-codi",
   },
 };
 
@@ -81,7 +74,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        <LocalBusinessJsonLd />
+        <StructuredDataJsonLd />
         {children}
       </body>
     </html>

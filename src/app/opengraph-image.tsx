@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getBusinessConfig } from "@/lib/business";
 
-export const alt = "Veylora";
+export const alt = "Veylora — web oficial";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

@@ -25,11 +25,12 @@ npm run build        # production build (also runs TypeScript checks)
 
 No test framework is configured yet; there is no `npm test` script.
 
-### Veylora / Google Maps SEO
+### Veylora / Google Search SEO
 
-- Business data lives in `.env` — copy from `.env.example` and fill NAP + `VEYLORA_GOOGLE_MAPS_URL`.
-- Local SEO: JSON-LD, `sitemap.xml`, `robots.txt`, Catalan landing at `/`.
-- Ranking #1 on Maps also requires an optimized [Google Business Profile](https://business.google.com) (reviews, photos, verification).
+- Brand keyword: **Veylora** — optimize for `google.com/search?q=veylora` (organic web results, not Maps).
+- Config in `.env` from `.env.example`; set `NEXT_PUBLIC_SITE_URL` to the production domain (ideally `veylora.com`).
+- SEO assets: JSON-LD (`Organization` + `WebSite`), `sitemap.xml`, `robots.txt`, manifest, Catalan landing at `/`.
+- After deploy: [Google Search Console](https://search.google.com/search-console) verification + sitemap submit + URL inspection.
 
 ### Prisma notes
 
