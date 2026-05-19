@@ -8,7 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ### Project overview
 
-Single-service Next.js 16 app (`life-run`) with Prisma ORM + SQLite. No external database server needed.
+**Veylora** at https://veylora.app — free landing page conversion audits. Production code lives on branch `cursor/veylora-public-mvp-f863` (not bare `master`). SEO config: `src/lib/site.ts`, guides under `/guides`, Search Console verified in layout.
 
 ### Running the dev server
 

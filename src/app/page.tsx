@@ -1,12 +1,48 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  FaqJsonLd,
+  SoftwareApplicationJsonLd,
+} from "@/components/json-ld";
+import { guides } from "@/app/guides/guide-content";
+import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_NAME, SITE_URL } from "@/lib/site";
 import { AdSlot } from "./components/ad-slot";
 import { AuditConsole } from "./components/audit-console";
 
-const siteUrl = "https://veylora.app";
+export const metadata: Metadata = {
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    url: SITE_URL,
+  },
+};
+
+const homepageFaqs = [
+  {
+    question: "What is Veylora?",
+    answer:
+      "Veylora is a free web tool that audits public landing pages and returns prioritized recommendations for conversion, SEO, trust, and accessibility.",
+  },
+  {
+    question: "Is the Veylora landing page audit free?",
+    answer:
+      "Yes. Paste any public URL, run the audit, and get a score with actionable fixes without creating an account.",
+  },
+  {
+    question: "What does a Veylora audit check?",
+    answer:
+      "Veylora reviews headlines, CTAs, trust proof, SEO title and meta description, forms, and basic accessibility signals.",
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-slate-950 text-white">
-      <SeoJsonLd />
+      <SoftwareApplicationJsonLd />
+      <FaqJsonLd items={homepageFaqs} />
       <Hero />
       <AdSlot label="Top leaderboard ad" slot={process.env.NEXT_PUBLIC_ADSENSE_TOP_SLOT} className="mx-auto max-w-7xl" />
       <AuditConsole />
@@ -14,42 +50,9 @@ export default function Home() {
       <AdRevenueEngine />
       <OrganicTrafficEngine />
       <ContentNetwork />
+      <HomeFaq />
       <FinalCta />
     </main>
-  );
-}
-
-function SeoJsonLd() {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Veylora",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    url: siteUrl,
-    description:
-      "Veylora audits landing pages and returns prioritized conversion, SEO, trust, and accessibility recommendations.",
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Free conversion audit",
-        price: "0",
-        priceCurrency: "EUR",
-      },
-      {
-        "@type": "Offer",
-        name: "Free landing page audit",
-        price: "0",
-        priceCurrency: "EUR",
-      },
-    ],
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
   );
 }
 
@@ -89,12 +92,14 @@ function Hero() {
             Free landing page audit for clearer, better-converting websites.
           </p>
           <h1 className="mt-7 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            Find the leaks that make visitors leave before they buy.
+            <span className="text-cyan-200">{SITE_NAME}</span> — find the leaks
+            that make visitors leave before they buy
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Veylora gives founders, marketers, and small businesses a practical
-            score with clear recommendations for headlines, CTAs, trust signals,
-            SEO snippets, and accessibility.
+            {SITE_NAME} is a free landing page audit tool for founders,
+            marketers, and small businesses. Get a practical score with clear
+            recommendations for headlines, CTAs, trust signals, SEO snippets,
+            and accessibility.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
@@ -283,29 +288,6 @@ function OrganicTrafficEngine() {
 }
 
 function ContentNetwork() {
-  const guides = [
-    {
-      title: "Landing page conversion audit checklist",
-      description: "The core checklist for founders checking headlines, CTAs, proof, pricing, and SEO snippets.",
-      href: "/guides/landing-page-conversion-audit",
-    },
-    {
-      title: "Website audit checklist for small businesses",
-      description: "A simple checklist for local sites that need more calls, bookings, and qualified leads.",
-      href: "/guides/website-audit-checklist",
-    },
-    {
-      title: "Landing page CTA examples",
-      description: "Examples of call-to-action copy that makes the next step obvious and reduces hesitation.",
-      href: "/guides/landing-page-cta-examples",
-    },
-    {
-      title: "Conversion rate optimization basics",
-      description: "A practical CRO primer built for early-stage SaaS, freelancers, and service businesses.",
-      href: "/guides/conversion-rate-optimization-basics",
-    },
-  ];
-
   return (
     <section id="ads" className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
       <div className="max-w-2xl">
@@ -323,13 +305,16 @@ function ContentNetwork() {
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {guides.map((guide) => (
           <article
-            key={guide.href}
+            key={guide.slug}
             className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6"
           >
-            <h3 className="text-2xl font-semibold">{guide.title}</h3>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
+              {guide.keyword}
+            </p>
+            <h3 className="mt-3 text-2xl font-semibold">{guide.title}</h3>
             <p className="mt-3 leading-7 text-slate-300">{guide.description}</p>
             <Link
-              href={guide.href}
+              href={`/guides/${guide.slug}`}
               className="mt-6 inline-flex rounded-full bg-white px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-slate-950 transition hover:bg-cyan-200"
             >
               Read guide
@@ -338,6 +323,31 @@ function ContentNetwork() {
         ))}
       </div>
       <AdSlot label="Content network ad" slot={process.env.NEXT_PUBLIC_ADSENSE_CONTENT_SLOT} className="mt-8" />
+    </section>
+  );
+}
+
+function HomeFaq() {
+  return (
+    <section
+      id="faq"
+      className="mx-auto max-w-7xl px-6 py-16 lg:px-8"
+      aria-labelledby="faq-heading"
+    >
+      <h2 id="faq-heading" className="text-4xl font-semibold tracking-tight">
+        Frequently asked questions about {SITE_NAME}
+      </h2>
+      <dl className="mt-10 space-y-6">
+        {homepageFaqs.map((item) => (
+          <div
+            key={item.question}
+            className="rounded-[2rem] border border-white/10 bg-white/[0.05] p-6"
+          >
+            <dt className="text-lg font-semibold text-cyan-100">{item.question}</dt>
+            <dd className="mt-3 leading-7 text-slate-300">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }
