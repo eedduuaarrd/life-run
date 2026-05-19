@@ -1,14 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { absoluteUrl, SITE_NAME } from "@/lib/site";
 import { AdSlot } from "../components/ad-slot";
 import { guides } from "./guide-content";
 
 export const metadata: Metadata = {
-  title: "Conversion audit guides",
+  title: "Free conversion & landing page audit guides",
   description:
-    "Free landing page, website audit, CTA, and conversion optimization guides from Veylora.",
+    "Free guides on landing page audits, CTA copy, website checklists, SEO snippets, and CRO — from Veylora.",
   alternates: {
-    canonical: "https://veylora.app/guides",
+    canonical: absoluteUrl("/guides"),
+  },
+  openGraph: {
+    title: `Conversion guides | ${SITE_NAME}`,
+    description:
+      "Practical SEO and conversion guides that bring organic traffic into the free Veylora audit tool.",
+    url: absoluteUrl("/guides"),
   },
 };
 
@@ -17,17 +24,18 @@ export default function GuidesIndex() {
     <main className="min-h-screen bg-slate-950 px-6 py-10 text-white lg:px-8">
       <section className="mx-auto max-w-7xl">
         <Link href="/" className="text-sm font-semibold text-cyan-200 transition hover:text-white">
-          ← Back to Veylora
+          ← Back to {SITE_NAME}
         </Link>
         <p className="mt-16 text-sm font-bold uppercase tracking-[0.3em] text-cyan-200">
           Organic guides
         </p>
         <h1 className="mt-5 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">
-          Free conversion guides for founders and small teams
+          {SITE_NAME} guides: landing page audits, CTAs &amp; CRO
         </h1>
         <p className="mt-6 max-w-3xl text-xl leading-9 text-slate-300">
-          Practical pages built to help visitors and bring organic search traffic
-          back into the free Veylora audit flow.
+          Practical pages built to rank in search and send readers into the free{" "}
+          {SITE_NAME} audit. Each guide targets a real query founders and marketers
+          type into Google.
         </p>
 
         <AdSlot

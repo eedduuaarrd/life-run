@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import {
+  ArticleJsonLd,
+  BreadcrumbJsonLd,
+} from "@/components/json-ld";
+import { absoluteUrl } from "@/lib/site";
 import { AdSlot } from "../../components/ad-slot";
-import { getGuide, guides } from "../guide-content";
+import { getGuide, getRelatedGuides, guides } from "../guide-content";
 
 type GuidePageProps = {
   params: Promise<{ slug: string }>;
@@ -23,8 +28,15 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   return {
     title: guide.title,
     description: guide.description,
+    keywords: [guide.keyword, "Veylora", "landing page audit"],
     alternates: {
-      canonical: `https://veylora.app/guides/${guide.slug}`,
+      canonical: absoluteUrl(`/guides/${guide.slug}`),
+    },
+    openGraph: {
+      title: guide.title,
+      description: guide.description,
+      url: absoluteUrl(`/guides/${guide.slug}`),
+      type: "article",
     },
   };
 }
@@ -37,8 +49,18 @@ export default async function GuidePage({ params }: GuidePageProps) {
     notFound();
   }
 
+  const related = getRelatedGuides(slug, 3);
+
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-10 text-white lg:px-8">
+      <ArticleJsonLd guide={guide} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Guides", path: "/guides" },
+          { name: guide.title, path: `/guides/${guide.slug}` },
+        ]}
+      />
       <article className="mx-auto max-w-4xl">
         <Link href="/guides" className="text-sm font-semibold text-cyan-200 transition hover:text-white">
           ← All guides
@@ -85,6 +107,29 @@ export default async function GuidePage({ params }: GuidePageProps) {
             </div>
           ))}
         </section>
+
+        {related.length > 0 ? (
+          <section className="mt-12" aria-labelledby="related-guides">
+            <h2 id="related-guides" className="text-2xl font-semibold">
+              Related guides
+            </h2>
+            <ul className="mt-6 space-y-4">
+              {related.map((item) => (
+                <li key={item.slug}>
+                  <Link
+                    href={`/guides/${item.slug}`}
+                    className="block rounded-2xl border border-white/10 bg-white/[0.05] p-5 transition hover:border-cyan-300/40"
+                  >
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">
+                      {item.keyword}
+                    </p>
+                    <p className="mt-2 text-lg font-semibold">{item.title}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <section className="mt-12 rounded-[2rem] bg-white p-6 text-slate-950">
           <h2 className="text-3xl font-semibold">Keep improving with Veylora</h2>

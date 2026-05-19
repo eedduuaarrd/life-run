@@ -123,7 +123,92 @@ export const guides: Guide[] = [
       },
     ],
   },
+  {
+    slug: "free-landing-page-audit-tool",
+    title: "Free landing page audit tool: what to expect",
+    description:
+      "How a free landing page audit tool works, what signals it checks, and how to turn results into higher conversions.",
+    intro:
+      "A good free audit should be fast, specific, and focused on revenue-impacting fixes—not vanity scores.",
+    keyword: "free landing page audit tool",
+    sections: [
+      {
+        title: "Paste a public URL",
+        body: "The tool should analyze live HTML from a public page without requiring login or installing code first.",
+      },
+      {
+        title: "Score the conversion basics",
+        body: "Look for feedback on headlines, CTA clarity, proof placement, pricing uncertainty, and form friction.",
+      },
+      {
+        title: "Prioritize fixes by impact",
+        body: "The best tools rank recommendations so teams know what to change before redesigning the whole page.",
+      },
+      {
+        title: "Re-run after changes",
+        body: "Compare scores after each update to confirm the page is clearer and easier to act on.",
+      },
+    ],
+  },
+  {
+    slug: "landing-page-seo-checklist",
+    title: "Landing page SEO checklist",
+    description:
+      "A practical landing page SEO checklist for titles, meta descriptions, headings, and snippet quality.",
+    intro:
+      "SEO for landing pages is mostly about clarity in search snippets and on-page structure—not keyword stuffing.",
+    keyword: "landing page SEO checklist",
+    sections: [
+      {
+        title: "Write a specific title tag",
+        body: "Include the primary keyword and outcome. Avoid generic titles that could apply to any product.",
+      },
+      {
+        title: "Match the meta description to intent",
+        body: "Explain who the page is for, what they get, and why they should click from search results.",
+      },
+      {
+        title: "Use one clear H1",
+        body: "The visible headline should align with the title tag and the promise visitors expect from search.",
+      },
+      {
+        title: "Add internal links to related content",
+        body: "Link to guides, case studies, or tools that support the same topic cluster and help crawlers understand context.",
+      },
+    ],
+  },
+  {
+    slug: "improve-landing-page-conversion-rate",
+    title: "How to improve landing page conversion rate",
+    description:
+      "Step-by-step ways to improve landing page conversion rate without buying more traffic first.",
+    intro:
+      "Higher conversion rate usually comes from clearer messaging, stronger proof, and fewer decision points—not more animations.",
+    keyword: "improve landing page conversion rate",
+    sections: [
+      {
+        title: "Audit the hero first",
+        body: "If visitors cannot understand the offer in five seconds, nothing below the fold will save the page.",
+      },
+      {
+        title: "Reduce CTA competition",
+        body: "One primary action per section beats three equal buttons that split attention.",
+      },
+      {
+        title: "Place proof beside claims",
+        body: "Reviews, logos, and outcomes should sit next to the promise they support, not only in the footer.",
+      },
+      {
+        title: "Test mobile readability",
+        body: "Short paragraphs, large tap targets, and fast loads matter because most landing page traffic is mobile.",
+      },
+    ],
+  },
 ];
+
+export function getRelatedGuides(slug: string, limit = 3): Guide[] {
+  return guides.filter((guide) => guide.slug !== slug).slice(0, limit);
+}
 
 export function getGuide(slug: string) {
   return guides.find((guide) => guide.slug === slug);

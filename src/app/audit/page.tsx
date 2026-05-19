@@ -20,14 +20,19 @@ export async function generateMetadata({ searchParams }: AuditPageProps): Promis
     }
   }
 
+  const hasSharedUrl = Boolean(url);
+
   return {
     title,
     description: "A shareable Veylora landing page audit with score and recommendations.",
     alternates: {
-      canonical: url
-        ? `https://veylora.app/audit?url=${encodeURIComponent(url)}`
+      canonical: hasSharedUrl
+        ? `https://veylora.app/audit?url=${encodeURIComponent(url!)}`
         : "https://veylora.app/audit",
     },
+    robots: hasSharedUrl
+      ? { index: false, follow: true }
+      : { index: true, follow: true },
   };
 }
 
