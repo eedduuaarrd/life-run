@@ -20,16 +20,31 @@ export default function Home() {
 }
 
 function SeoJsonLd() {
-  const data = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Veylora",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    url: siteUrl,
-    description:
-      "Veylora audits landing pages and returns prioritized conversion, SEO, trust, and accessibility recommendations.",
-    offers: [
+  const data = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Veylora",
+      alternateName: "Veylora Landing Page Audit",
+      url: siteUrl,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Veylora",
+      url: siteUrl,
+      email: "hello@veylora.app",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Veylora",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: siteUrl,
+      description:
+        "Veylora audits landing pages and returns prioritized conversion, SEO, trust, and accessibility recommendations.",
+      offers: [
       {
         "@type": "Offer",
         name: "Free conversion audit",
@@ -42,8 +57,9 @@ function SeoJsonLd() {
         price: "0",
         priceCurrency: "EUR",
       },
-    ],
-  };
+      ],
+    },
+  ];
 
   return (
     <script
@@ -89,7 +105,7 @@ function Hero() {
             Free landing page audit for clearer, better-converting websites.
           </p>
           <h1 className="mt-7 max-w-4xl text-5xl font-semibold tracking-tight text-white md:text-7xl">
-            Find the leaks that make visitors leave before they buy.
+            Veylora finds the leaks that make visitors leave before they buy.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             Veylora gives founders, marketers, and small businesses a practical

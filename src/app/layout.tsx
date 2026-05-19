@@ -19,19 +19,30 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: "Veylora",
   title: {
-    default: "Veylora - Conversion audits for landing pages",
+    default: "Veylora | Free Landing Page Audit Tool",
     template: "%s | Veylora",
   },
   description:
-    "Audit any public landing page and get prioritized recommendations to improve clarity, trust, CTAs, SEO, and conversions.",
+    "Veylora is a free landing page audit tool that helps founders and marketers find conversion leaks, unclear CTAs, weak trust signals, SEO issues, and accessibility gaps.",
+  keywords: [
+    "Veylora",
+    "veylora.app",
+    "free landing page audit",
+    "website audit tool",
+    "conversion audit",
+    "landing page checker",
+  ],
+  creator: "Veylora",
+  publisher: "Veylora",
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "Veylora - Conversion audits for landing pages",
+    title: "Veylora | Free Landing Page Audit Tool",
     description:
-      "Find the leaks that make visitors leave before they buy with a live conversion audit.",
+      "Run a free Veylora audit to find conversion leaks, unclear CTAs, weak trust signals, SEO issues, and accessibility gaps.",
     url: siteUrl,
     siteName: "Veylora",
     type: "website",
@@ -42,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Veylora - Conversion audits for landing pages",
+    title: "Veylora | Free Landing Page Audit Tool",
     description:
-      "Audit any public landing page and get prioritized recommendations to improve conversions.",
+      "Audit any public landing page with Veylora and get prioritized recommendations to improve conversions.",
   },
   other: {
     "google-adsense-account": adsenseClient,
