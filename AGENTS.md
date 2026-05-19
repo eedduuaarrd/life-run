@@ -25,6 +25,13 @@ npm run build        # production build (also runs TypeScript checks)
 
 No test framework is configured yet; there is no `npm test` script.
 
+### Veylora / Google Search SEO
+
+- Brand keyword: **Veylora** — optimize for `google.com/search?q=veylora` (organic web results, not Maps).
+- Config in `.env` from `.env.example`; set `NEXT_PUBLIC_SITE_URL` to the production domain (ideally `veylora.com`).
+- SEO assets: JSON-LD (`Organization` + `WebSite`), `sitemap.xml`, `robots.txt`, manifest, Catalan landing at `/`.
+- After deploy: [Google Search Console](https://search.google.com/search-console) verification + sitemap submit + URL inspection.
+
 ### Prisma notes
 
 - The schema is at `prisma/schema.prisma` (currently has no models).
