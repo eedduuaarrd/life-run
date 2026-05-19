@@ -25,6 +25,12 @@ npm run build        # production build (also runs TypeScript checks)
 
 No test framework is configured yet; there is no `npm test` script.
 
+### Veylora / Google Maps SEO
+
+- Business data lives in `.env` — copy from `.env.example` and fill NAP + `VEYLORA_GOOGLE_MAPS_URL`.
+- Local SEO: JSON-LD, `sitemap.xml`, `robots.txt`, Catalan landing at `/`.
+- Ranking #1 on Maps also requires an optimized [Google Business Profile](https://business.google.com) (reviews, photos, verification).
+
 ### Prisma notes
 
 - The schema is at `prisma/schema.prisma` (currently has no models).
