@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Veylora
+
+Veylora is an ad-supported conversion audit site for public landing pages. It
+fetches a submitted URL, scores the page across conversion, SEO, trust, and
+accessibility signals, then turns useful free audits and organic guides into
+monetizable pageviews.
 
 ## Getting Started
 
-First, run the development server:
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy to Vercel as a standard Next.js app. No paid infrastructure is required
+for the current MVP.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Production is configured for `https://veylora.app`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For ad monetization, set these optional Vercel environment variables after
+Google AdSense approves `veylora.app`. The default publisher is already
+configured as `ca-pub-6750754859429492`.
 
-## Deploy on Vercel
+```bash
+NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX
+GOOGLE_ADSENSE_PUBLISHER_ID=pub-XXXXXXXXXXXXXXXX
+NEXT_PUBLIC_ADSENSE_TOP_SLOT=
+NEXT_PUBLIC_ADSENSE_IN_FEED_SLOT=
+NEXT_PUBLIC_ADSENSE_CONTENT_SLOT=
+NEXT_PUBLIC_ADSENSE_GUIDE_SLOT=
+NEXT_PUBLIC_SPONSOR_URL=
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Without those values, ad slots render sponsor fallback cards and `/ads.txt`
+returns a setup comment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Audit endpoint
+
+`POST /api/audit`
+
+```json
+{ "url": "https://example.com" }
+```
+
+The endpoint blocks obvious private and local URLs, fetches public HTML, and
+returns a structured conversion audit.

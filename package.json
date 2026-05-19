@@ -1,5 +1,5 @@
 {
-  "name": "life-run",
+  "name": "veylora",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^7.8.0",
+    "@vercel/analytics": "^2.0.1",
     "date-fns": "^4.2.1",
     "nanoid": "^5.1.11",
     "next": "16.2.6",
