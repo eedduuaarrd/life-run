@@ -1,18 +1,25 @@
-import Script from "next/script";
+"use client";
+
+import { useEffect } from "react";
 import { adsenseClient } from "@/lib/adsense";
 
 export function AdSenseScript() {
-  if (!adsenseClient) {
-    return null;
-  }
+  useEffect(() => {
+    if (!adsenseClient || document.getElementById("google-adsense")) {
+      return;
+    }
 
-  return (
-    <Script
-      id="google-adsense"
-      async
-      strategy="afterInteractive"
-      crossOrigin="anonymous"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-    />
-  );
+    const timer = window.setTimeout(() => {
+      const script = document.createElement("script");
+      script.id = "google-adsense";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`;
+      document.head.appendChild(script);
+    }, 5000);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  return null;
 }

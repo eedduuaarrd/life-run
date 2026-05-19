@@ -1,6 +1,10 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { AdSlot } from "./components/ad-slot";
-import { AuditConsole } from "./components/audit-console";
+
+const AuditConsole = dynamic(() =>
+  import("./components/audit-console").then((mod) => mod.AuditConsole),
+);
 
 const siteUrl = "https://veylora.app";
 export default function Home() {

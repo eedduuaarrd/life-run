@@ -23,12 +23,16 @@ export function AdSlot({ label, slot, className = "" }: AdSlotProps) {
       return;
     }
 
-    try {
-      window.adsbygoogle = window.adsbygoogle ?? [];
-      window.adsbygoogle.push({});
-    } catch {
-      // Ad blockers and approval state can prevent AdSense from rendering.
-    }
+    const timer = window.setTimeout(() => {
+      try {
+        window.adsbygoogle = window.adsbygoogle ?? [];
+        window.adsbygoogle.push({});
+      } catch {
+        // Ad blockers and approval state can prevent AdSense from rendering.
+      }
+    }, 5500);
+
+    return () => window.clearTimeout(timer);
   }, [canRenderAd]);
 
   return (
